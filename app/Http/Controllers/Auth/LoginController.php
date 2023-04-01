@@ -42,62 +42,36 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function login(Request $request)
+    public function redirectTo()
     {
-        // $this->validate($request,[
-            //     'username' => 'required',
-            //     'password' => 'required',
-            // ]);
-            
-            // if(Auth::attempt(['username' => $input['username'], 'password' => $input['password']])){
-                //     return redirect()->route('home');
-                // }else{
-                    //     dd("gagal");
-                    //     return redirect()->route('login')->with('error', 'NISN/NIPN dan Password salah');
-                    // }
-                    
-        $message = array(
-            'required.email'    =>  'This is required',
-            'required.password' =>  'This is required',
-        );
-        $this->validate($request,[
-            'username' =>  'required',
-            'password'  =>  'required',
-        ],$message);
-    
-        $username = $request->username;
-        $pass = $request->password;
-    
-        if(Auth::attempt(['username' => $username, 'password' => $pass])){
-            Session::flash('success','Welcome '.Auth::user()->username);
-            return redirect()->route('home');
-        }else{
-            Session::flash('error','Sorry! Try Again. It seems your login credential is not correct.');
-            return redirect()->back();
+        switch (Auth::user()->role) {
+            case 'Student':
+                $this->redirectTo = '/home';
+                return $this->redirectTo;
+                break;
+            default:
+                $this->redirectTo = '/login';
+                return $this->redirectTo;
         }
     }
 
-    // public function username()
-    // {
-    //     return 'username';
-    // }
+    public function username()
+    {
+        return 'username';
+    }
 
-    // public function redirectTo()
-    // {
-    //     switch (Auth::user()->role){
-    //         case 'Student':
-    //             $this->redirectTo = '/home';
-    //             return $this->redirectTo;
-    //             break;
-    //     }
-    // }
+    protected function validateLogin(Request $request)
+    {
+        $request->validate([
+            $this->username() => 'required|string',
+            'password' => 'required|string',
+        ]);
+    }
 
-    // protected function validateLogin(Request $request)
-    // {
-    //     $request->validate([
-    //         $this->username() => 'required|string',
-    //         'password' => 'required|string',
-    //     ]);
-    // }
+    // Untuk login cuma bisa 1 user
+    protected function authenticated(Request $request, $user)
+    {
+        Auth::logoutOtherDevices($request['password']);
+    }
 
 }
