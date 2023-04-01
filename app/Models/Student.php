@@ -7,5 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
-    use HasFactory;
+    public $timestamps = false;
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'nisn', 'username');
+    }
+
+    public function grade()
+    {
+        return $this->hasMany(Grade::class);
+    }
+
+    public function bookRent()
+    {
+        return $this->hasMany(BookRent::class);
+    }
 }

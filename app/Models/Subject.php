@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Subject extends Model
 {
-    use HasFactory;
+    public $timestamps = false;
+    public function grade()
+    {
+        return $this->hasMany(Grade::class);
+    }
 }

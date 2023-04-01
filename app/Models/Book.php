@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
-    use HasFactory;
+    public $timestamps = false;
+    public function bookRent()
+    {
+        return $this->hasMany(BookRent::class);
+    }
 }
