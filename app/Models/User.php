@@ -41,11 +41,11 @@ class User extends Authenticatable
 
     public function teacher()
     {
-        return $this->hasOne(Teacher::class, 'nipn');
+        return $this->hasOne(Teacher::class, 'user_id');
     }
 
     public function student()
     {
-        return $this->hasOne(Student::class, 'nisn');
+        return $this->hasOne(Student::class, 'user_id');
     }
 }

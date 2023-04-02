@@ -23,7 +23,17 @@ class UserSeeder extends Seeder
             [
                 'username' => '111111',
                 'password' => bcrypt('123456'),
+                'role' => "Principal"
+            ],
+            [
+                'username' => '222222',
+                'password' => bcrypt('123456'),
                 'role' => "Teacher"
+            ],
+            [
+                'username' => '333333',
+                'password' => bcrypt('123456'),
+                'role' => "Librarian"
             ],
         ];
 
