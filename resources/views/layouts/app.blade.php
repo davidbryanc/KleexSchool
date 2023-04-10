@@ -15,15 +15,25 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+        <!-- Title Font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+    @yield('head')
+
+    <!-- Icon -->
+    <script src="https://kit.fontawesome.com/047207a56a.js" crossorigin="anonymous"></script>
+    
 </head>
-<body>
+<body style="background: url('{{ asset('assets') }}/background/background2.jpg') center / cover no-repeat fixed">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/dashboard') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -34,6 +44,13 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
 
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/inputnilai') }}">Input Nilai</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/liatnilai') }}">Liat Nilai</a>
+                        </li>
+                        
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -75,7 +92,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4" style="width:100%;height:100%;display: flex; justify-content: center;">
             @yield('content')
         </main>
     </div>

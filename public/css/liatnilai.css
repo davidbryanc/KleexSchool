@@ -1,0 +1,44 @@
+.card
+{
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 0px;
+    box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.2);
+    height: fit-content;
+    width: 100%;
+}
+
+.card p{
+    margin-bottom: 4px;
+}
+
+.card-header{
+    border: 0px;
+    background-color: #4b5fda;
+    color: white;
+}
+
+#identity{
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+#selected-semester{
+    max-width: 50%;
+}
+
+/* table {
+    border: 1px solid black;
+    border-collapse: separate;
+    border-spacing: 0;
+} */
+
+table thead th, table tbody td{
+    vertical-align: middle;
+}
+
+
+@media screen and (max-width:576px) {
+    #selected-semester{
+        max-width: 70%;
+    }
+}

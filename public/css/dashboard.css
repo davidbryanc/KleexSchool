@@ -1,0 +1,19 @@
+.content{
+    display: flex;
+    justify-content: center;
+}
+
+.header{
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    font-size: 48px;
+    border-bottom: 2px solid black;
+}
+.card
+{
+    width: 400px;
+    height: 600px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 0px;
+    box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.2);
+}
