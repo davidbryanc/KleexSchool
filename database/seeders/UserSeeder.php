@@ -16,25 +16,46 @@ class UserSeeder extends Seeder
     {
         $user = [
             [
-                'username' => '160421101',
+                'username' => '000001',
                 'password' => bcrypt('123456'),
                 'role' => "Student"
             ],
             [
-                'username' => '111111',
+                'username' => '000002',
+                'password' => bcrypt('123456'),
+                'role' => "Student"
+            ],
+            [
+                'username' => '000003',
+                'password' => bcrypt('123456'),
+                'role' => "Student"
+            ],
+            [
+                'username' => '100001',
                 'password' => bcrypt('123456'),
                 'role' => "Principal"
             ],
             [
-                'username' => '222222',
+                'username' => '100002',
+                'password' => bcrypt('123456'),
+                'role' => "Librarian"
+            ],
+            [
+                'username' => '100003',
                 'password' => bcrypt('123456'),
                 'role' => "Teacher"
             ],
             [
-                'username' => '333333',
+                'username' => '100004',
                 'password' => bcrypt('123456'),
-                'role' => "Librarian"
+                'role' => "Teacher"
             ],
+            [
+                'username' => '100005',
+                'password' => bcrypt('123456'),
+                'role' => "Teacher"
+            ],
+            
         ];
 
         foreach ($user as $value){

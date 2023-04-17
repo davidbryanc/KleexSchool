@@ -23,8 +23,10 @@ class CreateStudentsTable extends Migration
             $table->string('address');
             $table->timestamp('birth_date');
             $table->string('phone_number');
-            $table->enum('gender', ['Male','Female']);
-            $table->enum('class', ['7', '8', '9']);
+            $table->string('gender');
+            $table->string('class');
+            // $table->enum('gender', ['Male','Female']);
+            // $table->enum('class', [7, 8, 9]);
         });
     }
 

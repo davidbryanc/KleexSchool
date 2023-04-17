@@ -15,11 +15,7 @@
                     @endif
 
                     {{ __('You are logged in!') }}
-                    @if ($role == "Student")
-                        Anda adalah Student    
-                    @else
-                        Anda adalah User
-                    @endif
+                        Anda adalah {{ $role }}    
                 </div>
             </div>
         </div>
