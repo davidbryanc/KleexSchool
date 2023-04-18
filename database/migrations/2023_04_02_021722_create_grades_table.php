@@ -24,7 +24,7 @@ class CreateGradesTable extends Migration
             $table->float('mid_score')->default(0);
             $table->float('end_score')->default(0);
             $table->float('final_score')->default(0);
-
+            $table->string('nisbi')->default("E");
         });
     }
 

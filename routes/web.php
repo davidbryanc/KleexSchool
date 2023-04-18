@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\Routing\Route as RoutingRoute;
@@ -21,7 +23,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::get('/liatnilai', [StudentController::class, 'index'])->name('liatnilai');
+Route::post('/show-nilai', [StudentController::class, 'showNilai'])->name('show.nilai');
+
+
 Route::view('/dashboard', 'dashboard');
-Route::view('/liatnilai', 'liatnilai');
 Route::view('/inputnilai', 'inputnilai');
