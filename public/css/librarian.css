@@ -1,0 +1,21 @@
+.card{
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 0px;
+    box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.2);
+    height: fit-content;
+    width: 100%;
+}
+
+.card p{
+    margin-bottom: 4px;
+}
+
+.card-header{
+    border: 0px;
+    background-color: #4b5fda !important;
+    color: white;
+}
+
+tbody tr > td{
+    vertical-align: middle;
+}

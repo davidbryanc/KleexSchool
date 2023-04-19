@@ -31,3 +31,5 @@ Route::post('/show-nilai', [StudentController::class, 'showNilai'])->name('show.
 
 Route::view('/dashboard', 'dashboard');
 Route::view('/inputnilai', 'inputnilai');
+Route::view('/librarian', 'librarian');
+Route::view('/bookrent', 'bookrent');
