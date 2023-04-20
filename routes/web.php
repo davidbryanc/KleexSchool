@@ -26,10 +26,12 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/liatnilai', [StudentController::class, 'index'])->name('liatnilai');
+Route::get('/bookrent', [StudentController::class, 'bookRent'])->name('book.rent');
 Route::post('/show-nilai', [StudentController::class, 'showNilai'])->name('show.nilai');
 
+Route::post('/rent-book', [StudentController::class, 'rentBook'])->name('rent.book');
+Route::post('/return-book', [StudentController::class, 'returnBook'])->name('return.book');
 
 Route::view('/dashboard', 'dashboard');
 Route::view('/inputnilai', 'inputnilai');
 Route::view('/librarian', 'librarian');
-Route::view('/bookrent', 'bookrent');

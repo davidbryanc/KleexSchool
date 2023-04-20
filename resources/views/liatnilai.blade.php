@@ -128,9 +128,6 @@
                         </tr>
                     `
                 })
-            },
-            error: function(error) {
-                // showError(error)
             }
         })
     }
