@@ -30,6 +30,7 @@ Route::get('/bookrent', [StudentController::class, 'bookRent'])->name('book.rent
 Route::post('/show-nilai', [StudentController::class, 'showNilai'])->name('show.nilai');
 
 Route::post('/rent-book', [StudentController::class, 'rentBook'])->name('rent.book');
+Route::post('/search-book', [StudentController::class, 'searchBook'])->name('search.book');
 Route::post('/return-book', [StudentController::class, 'returnBook'])->name('return.book');
 
 Route::view('/dashboard', 'dashboard');

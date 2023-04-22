@@ -54,11 +54,19 @@
                             </thead>
                             <tbody style="text-align: center" id="list-pinjam">
                                 @foreach ($rents as $index => $rent)
-                                    <tr>
-                                        <td>{{$index + 1}}.</td>
-                                        <td style="text-align: left" id="book_{{ $rent->id }}" >{{ $rent->name }}</td>
-                                        <td><button type="button" class="btn btn-warning" onclick="returnBook({{ $rent->id }})">Return</button></td>
-                                    </tr>  
+                                    @if($rent->is_returned == 1)
+                                        <tr>
+                                            <td>{{$index + 1}}.</td>
+                                            <td style="text-align: left" id="book_{{ $rent->book->id }}" >{{ $rent->book->name }}</td>
+                                            <td>Pending</button></td>
+                                        </tr>
+                                    @else
+                                        <tr>
+                                            <td>{{$index + 1}}.</td>
+                                            <td style="text-align: left" id="book_{{ $rent->book->id }}" >{{ $rent->book->name }}</td>
+                                            <td><button type="button" class="btn btn-warning" onclick="returnBook({{ $rent->book->id }})">Return</button></td>
+                                        </tr>
+                                    @endif  
                                 @endforeach  
                             </tbody>
                         </table>
@@ -73,7 +81,7 @@
                 </div>
                 <div class="card-body">
                     <label for="filter-username">Pencarian Judul Buku :</label>
-                    <input type="text" value="" id="filter-title">
+                    <input type="search" id="search" placeholder="Search" onkeyup="search()">
                     <div class="table-responsive my-3">
                         <table class="table" >
                             <thead class="table-dark thead-sticky" style="text-align: center">
@@ -123,9 +131,9 @@
             },
             success: function(data) {
                 if(data.status == "Success"){
-                    alert("The process of borrowing books was successful")
+                    alert("The process of borrowing book was successful")
                 }else{
-                    alert("Borrowing books failed, borrowed books can not be more than 3 pieces")
+                    alert("Borrowing books failed, borrowed book can not be more than 3 pieces")
                 }
 
                 data.books.forEach((book,index) => {
@@ -133,19 +141,29 @@
                         <tr>
                             <td >${index + 1}.</td>
                             <td style="text-align: left" id="book_${ book.id }" >${ book.name }</td>
-                            <td><button type="button" class="btn btn-primary" onclick="rentBook(${ $book.id })">Rent</button></td>
+                            <td><button type="button" class="btn btn-primary" onclick="rentBook(${ book.id })">Rent</button></td>
                         </tr>  
                     `
                 })
 
                 data.rents.forEach((rent,index) => {
-                    list2.innerHTML += `
+                    if(rent.is_returned == 1){
+                        list2.innerHTML += `
                         <tr>
                             <td>${index + 1}.</td>
-                            <td style="text-align: left" id="book_${ rent.id }" >${ rent.name }</td>
-                            <td><button type="button" class="btn btn-warning" onclick="returnBook(${ rent.id })">Return</button></td>
+                            <td style="text-align: left" id="book_${ data.books2[index].id }" >${ data.books2[index].name }</td>
+                            <td>Pending</td>
                         </tr>  
-                    `
+                        `
+                    }else{
+                        list2.innerHTML += `
+                            <tr>
+                                <td>${index + 1}.</td>
+                                <td style="text-align: left" id="book_${ data.books2[index].id }" >${ data.books2[index].name }</td>
+                                <td><button type="button" class="btn btn-warning" onclick="returnBook(${ data.books2[index].id })">Return</button></td>
+                            </tr>  
+                        `
+                    }
                 })
             }
         })
@@ -155,15 +173,86 @@
         let name = $(`#book_${id}`).text()
         if (!confirm("Are you sure to return the book entitled " + name + "?")) return
 
+        const list1 = document.getElementById('list-buku')
+        list1.innerHTML = ''
+
+        const list2 = document.getElementById('list-pinjam')
+        list2.innerHTML = ''
+
         $.ajax({
             type: 'POST',
             url: '{{ route("return.book") }}',
             data: {
                 '_token': '<?php echo csrf_token(); ?>',
+                'id': id,
             },
             success: function(data) {
+                if(data.status == "Success"){
+                    alert("The process of returning book was successful, please wait until the librarian confirmed")
+                }else{
+                    alert("Returning book failed")
+                }
+
+                data.books.forEach((book,index) => {
+                    list1.innerHTML += `
+                        <tr>
+                            <td >${index + 1}.</td>
+                            <td style="text-align: left" id="book_${ book.id }" >${ book.name }</td>
+                            <td><button type="button" class="btn btn-primary" onclick="rentBook(${ book.id })">Rent</button></td>
+                        </tr>  
+                    `
+                })
+
+                data.rents.forEach((rent,index) => {
+                    if(rent.is_returned == 1){
+                        list2.innerHTML += `
+                        <tr>
+                            <td>${index + 1}.</td>
+                            <td style="text-align: left" id="book_${ data.books2[index].id }" >${ data.books2[index].name }</td>
+                            <td>Pending</td>
+                        </tr>  
+                        `
+                    }else{
+                        list2.innerHTML += `
+                            <tr>
+                                <td>${index + 1}.</td>
+                                <td style="text-align: left" id="book_${ data.books2[index].id }" >${ data.books2[index].name }</td>
+                                <td><button type="button" class="btn btn-warning" onclick="returnBook(${ data.books2[index].id })">Return</button></td>
+                            </tr>  
+                        `
+                    }
+                })
             }
         })
     }
+
+    const search = () =>{
+        let value = $('#search').val()
+
+        const list1 = document.getElementById('list-buku')
+        list1.innerHTML = ''
+
+        $.ajax({
+            type: 'POST',
+            url: '{{ route("search.book") }}',
+            data: {
+                '_token': '<?php echo csrf_token(); ?>',
+                'value': value,
+            },
+            success: function(data) {
+
+                data.books.forEach((book,index) => {
+                    list1.innerHTML += `
+                        <tr>
+                            <td >${index + 1}.</td>
+                            <td style="text-align: left" id="book_${ book.id }" >${ book.name }</td>
+                            <td><button type="button" class="btn btn-primary" onclick="rentBook(${ book.id })">Rent</button></td>
+                        </tr>  
+                    `
+                })
+            }
+        })
+    }
+
 </script>
 @endsection

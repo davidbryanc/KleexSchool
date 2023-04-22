@@ -24,9 +24,9 @@ class StudentController extends Controller
     public function bookRent()
     {
         $user = auth()->user();
-        $book_id = $user->student->bookRent()->get('book_id');
+        $book_id = $user->student->bookRent()->where('librarian_id', null)->orderBy('book_id')->get('book_id');
+        $rents = BookRent::where('student_id', $user->id)->where('librarian_id', null)->orderBy('book_id')->get();
         $books = Book::whereNotIn('id', $book_id)->get();
-        $rents = Book::whereIn('id', $book_id)->get();
 
         return view('bookrent', compact('user', 'books', 'rents'));
     }
@@ -49,8 +49,7 @@ class StudentController extends Controller
         $id = $request->id;
         $user = auth()->user();
 
-        $book_id = $user->student->bookRent()->get('book_id');
-        $total_book = count(Book::whereIn('id', $book_id)->get());
+        $total_book = count($user->student->bookRent()->where('librarian_id', null)->get('book_id'));
 
         if($total_book < 3){
 
@@ -65,14 +64,51 @@ class StudentController extends Controller
             $status = "Failed";
         }
 
-        $book_id = $user->student->bookRent()->get('book_id');
+        $book_id = $user->student->bookRent()->where('librarian_id', null)->orderBy('book_id')->get('book_id');
+        $rents = BookRent::where('student_id', $user->id)->where('librarian_id', null)->orderBy('book_id')->get();
         $books = Book::whereNotIn('id', $book_id)->get();
-        $rents = Book::whereIn('id', $book_id)->get();
+        $books2 = Book::whereIn('id', $book_id)->get();
 
         return response()->json(array(
             'status' => $status,
             'books' => $books,
+            'books2' => $books2,
             'rents' => $rents,
+        ), 200);
+    }
+
+    public function returnBook(Request $request){
+        $id = $request->id;
+        $user = auth()->user();
+
+        $target = $user->student->bookRent()->where('book_id', $id)->where('is_returned', 0)->first();
+        $book = BookRent::find($target->id);
+        $book->increment('is_returned');
+
+        $status = "Success";
+
+        $book_id = $user->student->bookRent()->where('librarian_id', null)->orderBy('book_id')->get('book_id');
+        $rents = BookRent::where('student_id', $user->id)->where('librarian_id', null)->orderBy('book_id')->get();
+        $books = Book::whereNotIn('id', $book_id)->get();
+        $books2 = Book::whereIn('id', $book_id)->get();
+
+        return response()->json(array(
+            'status' => $status,
+            'books' => $books,
+            'books2' => $books2,
+            'rents' => $rents,
+        ), 200);
+    }
+
+    public function searchBook(Request $request){
+        $value = $request->value;
+        $user = auth()->user();
+
+        $book_id = $user->student->bookRent()->where('librarian_id', null)->orderBy('book_id')->get('book_id');
+        $books = Book::whereNotIn('id', $book_id)->where('name', 'like', '%'.$value.'%')->get();
+
+        return response()->json(array(
+            'books' => $books,
         ), 200);
     }
 }
