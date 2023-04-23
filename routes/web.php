@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LibrarianController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +34,10 @@ Route::post('/rent-book', [StudentController::class, 'rentBook'])->name('rent.bo
 Route::post('/search-book', [StudentController::class, 'searchBook'])->name('search.book');
 Route::post('/return-book', [StudentController::class, 'returnBook'])->name('return.book');
 
+Route::get('/librarian', [LibrarianController::class, 'index'])->name('librarian');
+Route::post('/search-librarian', [LibrarianController::class, 'searchLibrarian'])->name('search.librarian');
+Route::post('/acc-librarian', [LibrarianController::class, 'accLibrarian'])->name('acc.librarian');
+
 Route::view('/dashboard', 'dashboard');
 Route::view('/inputnilai', 'inputnilai');
-Route::view('/librarian', 'librarian');
+// Route::view('/librarian', 'librarian');

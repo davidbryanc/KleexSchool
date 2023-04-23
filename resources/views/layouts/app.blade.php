@@ -65,6 +65,10 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ url('/bookrent') }}">Pinjam Buku</a>
                                 </li>
+                            @elseif(Auth::user()->role == "Librarian")
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url('/librarian') }}">Librarian</a>
+                                </li>
                             @endif
                         @endif
                     </ul>
