@@ -33,7 +33,6 @@ class TeacherController extends Controller
 
     public function inputNilai(Request $request)
     {
-        var_dump("Halo");        
         $studentId = $request->get('studentId');
         var_dump($studentId);
 

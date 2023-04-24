@@ -95,9 +95,10 @@
                                 @foreach ($students as $key=>$value)
                                     <tr style="text-align: center">
                                         <td>{{$key+1}}.</td>
-                                        <td class = "student-id" value = "{{ $value->id }}">{{ $value->name }}</td>
-                                        <td><input type="number" inputmode="numeric" class="form-class" id="nts_" max="100" min="0"></td>
-                                        <td><input type="number" inputmode="numeric" class="form-class" id="nas_" max="100" min="0"></td>
+                                        <td>{{ $value->name }}</td>
+                                        <input type="hidden" class = "student-id" value = "{{ $value->id }}">
+                                        <td><input type="number" inputmode="numeric" class="form-class nts" id="nts_" max="100" min="0"></td>
+                                        <td><input type="number" inputmode="numeric" class="form-class nas" id="nas_" max="100" min="0"></td>
                                         {{-- <td>
                                             <button type="button" class="btn btn-warning">
                                                 <i class="fa-solid fa-pencil edit-icon"></i>
@@ -116,7 +117,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success"><i class="fa-solid fa-download edit-icon" style="color: #ffffff;" onclick="inputNilai()"></i>Save changes</button>
+                    <button type="button" class="btn btn-success" onclick="inputNilai()"><i class="fa-solid fa-download edit-icon" style="color: #ffffff;"></i>Save changes</button>
                 </div>
             </div>
         </div>
@@ -128,12 +129,16 @@
 <script type="text/javascript">
     const inputNilai = () => {
         let studentId = $(`.student-id`).map(function() { return $(this).val() }).get()
+        let nts = $(`.nts`).map(function() { return $(this).val() }).get()
+        let nas = $(`.nas`).map(function() { return $(this).val() }).get()
         $.ajax({
             type: 'POST',
             url: '{{ route("input.nilai") }}',
             data: {
                 '_token': '<?php echo csrf_token(); ?>',
                 'studentId': studentId,
+                'nts': nts,
+                'nas': nas,
             },
             success: function(data) {
             }
