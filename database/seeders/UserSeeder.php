@@ -31,6 +31,21 @@ class UserSeeder extends Seeder
                 'role' => "Student"
             ],
             [
+                'username' => '000004',
+                'password' => bcrypt('123456'),
+                'role' => "Student"
+            ],
+            [
+                'username' => '000005',
+                'password' => bcrypt('123456'),
+                'role' => "Student"
+            ],
+            [
+                'username' => '000006',
+                'password' => bcrypt('123456'),
+                'role' => "Student"
+            ],
+            [
                 'username' => '100001',
                 'password' => bcrypt('123456'),
                 'role' => "Principal"

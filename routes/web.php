@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LibrarianController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\Routing\Route as RoutingRoute;
@@ -38,6 +39,8 @@ Route::get('/librarian', [LibrarianController::class, 'index'])->name('librarian
 Route::post('/search-librarian', [LibrarianController::class, 'searchLibrarian'])->name('search.librarian');
 Route::post('/acc-librarian', [LibrarianController::class, 'accLibrarian'])->name('acc.librarian');
 
+Route::get('/inputnilai', [TeacherController::class, 'index'])->name('inputnilai');
+Route::post('/input-nilai', [TeacherController::class, 'inputNilai'])->name('input.nilai');
+
 Route::view('/dashboard', 'dashboard');
-Route::view('/inputnilai', 'inputnilai');
 // Route::view('/librarian', 'librarian');

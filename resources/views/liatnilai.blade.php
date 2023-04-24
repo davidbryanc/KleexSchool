@@ -6,7 +6,7 @@
 
 @section('content')
 <main class="content">
-
+    
     <div class="row w-100 m-0">
         <div class="col-12">
             {{-- Card Identitas --}}

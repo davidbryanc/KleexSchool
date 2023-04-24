@@ -1,6 +1,6 @@
 id,user_id,name,address,birth_date,phone_number,gender,class
-1,4,Daniel,Sidoarjo,1990-01-17 14:56:38,082112345678,Male,NULL
-2,5,Erina,Surabaya,1990-02-17 14:56:38,082112345678,Female,NULL	
-3,6,Fahmi,Surabaya,1990-03-17 14:56:38,082112345678,Male,7
-4,7,Adelia,Sidoarjo,1990-03-17 14:56:38,082112345678,Female,8
-5,8,Matthew,Surabaya,1990-03-17 14:56:38,082112345678,Male,9
+1,7,Daniel,Sidoarjo,1990-01-17 14:56:38,082112345678,Male,NULL
+2,8,Erina,Surabaya,1990-02-17 14:56:38,082112345678,Female,NULL	
+3,9,Fahmi,Surabaya,1990-03-17 14:56:38,082112345678,Male,7
+4,10,Adelia,Sidoarjo,1990-03-17 14:56:38,082112345678,Female,8
+5,11,Matthew,Surabaya,1990-03-17 14:56:38,082112345678,Male,9

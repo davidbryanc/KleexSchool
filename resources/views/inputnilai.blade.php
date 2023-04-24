@@ -18,11 +18,11 @@
                     <div id="identity">
                         <div class="row">
                             <div class="col-4 col-sm-4 col-md-3">Nama</div>
-                            <div class="col-8 col-sm-8 col-md-9">: Nico Victorio</div>
+                            <div class="col-8 col-sm-8 col-md-9">: {{ $user->teacher->name }}</div>
                         </div>
                         <div class="row">
                             <div class="col-4 col-sm-4 col-md-3">NIPN</div>
-                            <div class="col-8 col-sm-8 col-md-9">: 28634591</div>
+                            <div class="col-8 col-sm-8 col-md-9">: {{ $user->username }}</div>
                         </div>
                     </div>
                 </div>
@@ -50,16 +50,16 @@
                                 </tr>
                             </thead>
                             <tbody style="text-align: center">
-                                @for ($i = 1; $i <= 3; $i++)
+                                @foreach($subject as $key => $value)
                                 <tr>
-                                    <td>{{$i}}.</td>
-                                    <td style="text-align: left">Ilmu Pengetahuan Alam</td>
+                                    <td>{{$key+1}}.</td>
+                                    <td style="text-align: left">{{ $value->name }}</td>
                                     <td><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#listmurid">
                                             <i class="fa-solid fa-pencil edit-icon"></i><span class="edit-btn">Edit</span>
                                         </button>
                                     </td>
-                                </tr>
-                                @endfor
+                                </tr>                                    
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -84,7 +84,7 @@
                                     <th rowspan="2">No.</th>
                                     <th rowspan="2">Nama Murid</th>
                                     <th colspan="2" >Nilai</th>
-                                    <th rowspan="2">Pengaturan</th>
+                                    {{-- <th rowspan="2">Pengaturan</th> --}}
                                 </tr>
                                 <tr>
                                     <th width="10%">NTS</th>
@@ -92,36 +92,52 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @for ($i = 1; $i <= 9; $i++)
-                                <tr style="text-align: center">
-                                    <td>{{$i}}.</td>
-                                    <td>Alexander Kenrick Duanto</td>
-                                    <td><input type="number" inputmode="numeric" class="form-class" id="nts_" max="100" min="0"></td>
-                                    <td><input type="number" inputmode="numeric" class="form-class" id="nas_" max="100" min="0"></td>
-                                    <td>
-                                        <button type="button" class="btn btn-warning">
-                                            <i class="fa-solid fa-pencil edit-icon"></i>
-                                            <span class="edit-btn">Edit</span>
-                                        </button>
-                                        <button type="button" class="btn btn-success">
-                                            <i class="fa-solid fa-check edit-icon" style=""></i>
-                                            <span class="edit-btn">Save</span>
-                                        </button>
-                                    </td>
-                                    
-                                </tr>
-                                @endfor
+                                @foreach ($students as $key=>$value)
+                                    <tr style="text-align: center">
+                                        <td>{{$key+1}}.</td>
+                                        <td class = "student-id" value = "{{ $value->id }}">{{ $value->name }}</td>
+                                        <td><input type="number" inputmode="numeric" class="form-class" id="nts_" max="100" min="0"></td>
+                                        <td><input type="number" inputmode="numeric" class="form-class" id="nas_" max="100" min="0"></td>
+                                        {{-- <td>
+                                            <button type="button" class="btn btn-warning">
+                                                <i class="fa-solid fa-pencil edit-icon"></i>
+                                                <span class="edit-btn">Edit</span>
+                                            </button>
+                                            <button type="button" class="btn btn-success">
+                                                <i class="fa-solid fa-check edit-icon" style=""></i>
+                                                <span class="edit-btn">Save</span>
+                                            </button>
+                                        </td> --}}                                    
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success"><i class="fa-solid fa-download edit-icon" style="color: #ffffff;"></i>Save changes</button>
+                    <button type="button" class="btn btn-success"><i class="fa-solid fa-download edit-icon" style="color: #ffffff;" onclick="inputNilai()"></i>Save changes</button>
                 </div>
             </div>
         </div>
     </div>
-
 </main>
+@endsection
+
+@section('script')
+<script type="text/javascript">
+    const inputNilai = () => {
+        let studentId = $(`.student-id`).map(function() { return $(this).val() }).get()
+        $.ajax({
+            type: 'POST',
+            url: '{{ route("input.nilai") }}',
+            data: {
+                '_token': '<?php echo csrf_token(); ?>',
+                'studentId': studentId,
+            },
+            success: function(data) {
+            }
+        })
+    }
+</script>
 @endsection
