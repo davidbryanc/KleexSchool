@@ -27,8 +27,11 @@ class TeacherController extends Controller
         $teacherClass = $user->teacher->class;
         $students = Student::where('class', $teacherClass)->get();
 
+        $period_id = $students[0]->grade()->get('period_id');
+        $periods = Period::find($period_id);
+
         //compact: utk passing variable dr backend/controller ke frontend/blade
-        return view('inputnilai', compact('user', 'subject', 'students'));
+        return view('inputnilai', compact('user', 'subject', 'students', 'periods'));
     }
 
     public function inputNilai(Request $request)

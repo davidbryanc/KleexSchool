@@ -37,6 +37,31 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
+                    Semester
+                </div>
+                <div class="card-body">
+                    <div class="col-12 col-sm-4 col-md-3 d-flex align-items-center">
+                        Pilih Semester :
+                    </div>
+                    <div class="col col-sm-8 col-md-9 d-flex align-items-center">
+                        <select class="form-select" aria-label="Semester" id="selected-semester">
+                            <option selected disabled>-- Pilih Semester --</option>
+                            @foreach ($periods as $p)
+                                <option value="{{ $p->id }}">{{ $p->name }}</option>
+                            @endforeach
+                          </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="spacing"></div>
+
+    <div class="row w-100 m-0">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
                     Daftar Mata Pelajaran
                 </div>
                 <div class="card-body">
@@ -52,7 +77,7 @@
                             <tbody style="text-align: center">
                                 @foreach($subject as $key => $value)
                                 <tr>
-                                    <td>{{$key+1}}.</td>
+                                    <td>{{$key + 1}}.</td>
                                     <td style="text-align: left">{{ $value->name }}</td>
                                     <td><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#listmurid">
                                             <i class="fa-solid fa-pencil edit-icon"></i><span class="edit-btn">Edit</span>
