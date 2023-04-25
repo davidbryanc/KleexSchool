@@ -8,6 +8,7 @@ use App\Models\Subject;
 use App\Models\Student;
 use Facade\Ignition\DumpRecorder\Dump;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TeacherController extends Controller
 {
@@ -37,9 +38,28 @@ class TeacherController extends Controller
     public function inputNilai(Request $request)
     {
         $studentId = $request->get('studentId');
-        var_dump($studentId);
+        $periodId = $request->get('periodId');
+        $subjectId = $request->get('subjectId');
+        $nts = $request->get('nts');
+        $nas = $request->get('nas');
+
+        foreach($studentId as $key=>$value){
+            DB::table('grades')->where(['student_id' => $value, 'subject_id' => $subjectId, 'period_id' => $periodId])->update([
+                'mid_score' => $nts[$key],
+                'end_score' => $nas[$key],
+                'final_score' => $nts[$key]*0.4 + $nas[$key]*0.6,
+            ]);
+
+            //failed hehe :D kalo ada id sebagai key, baru bisa pake ini
+            // $grade = Grade::where('student_id', $value)->where('subject_id', $subjectId)->where('period_id', $periodId)->first();
+            // $grade->mid_score   = $nts[$key];
+            // $grade->end_score = $nas[$key];
+            // $grade->final_score = $nts[$key]*0.4 + $nas[$key]*0.6;
+            // $grade->save();
+        }
 
         return response()->json(array(
+            'message' => "success",
         ), 200);
     }
 }

@@ -39,11 +39,11 @@
                 <div class="card-header">
                     Semester
                 </div>
-                <div class="card-body">
-                    <div class="col-12 col-sm-4 col-md-3 d-flex align-items-center">
-                        Pilih Semester :
+                <div class="card-body row">
+                    <div class="col-4 col-sm-4 col-md-3 d-flex align-items-center">
+                        Pilih Semester
                     </div>
-                    <div class="col col-sm-8 col-md-9 d-flex align-items-center">
+                    <div class="col-8 col-sm-8 col-md-9 d-flex align-items-center">
                         <select class="form-select" aria-label="Semester" id="selected-semester">
                             <option selected disabled>-- Pilih Semester --</option>
                             @foreach ($periods as $p)
@@ -79,7 +79,7 @@
                                 <tr>
                                     <td>{{$key + 1}}.</td>
                                     <td style="text-align: left">{{ $value->name }}</td>
-                                    <td><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#listmurid">
+                                    <td><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#listmurid" onclick="hiddenSubject({{ $value->id }})">
                                             <i class="fa-solid fa-pencil edit-icon"></i><span class="edit-btn">Edit</span>
                                         </button>
                                     </td>
@@ -122,6 +122,7 @@
                                         <td>{{$key+1}}.</td>
                                         <td>{{ $value->name }}</td>
                                         <input type="hidden" class = "student-id" value = "{{ $value->id }}">
+                                        <input type="hidden" id = "subject-id" value = "">
                                         <td><input type="number" inputmode="numeric" class="form-class nts" id="nts_" max="100" min="0"></td>
                                         <td><input type="number" inputmode="numeric" class="form-class nas" id="nas_" max="100" min="0"></td>
                                         {{-- <td>
@@ -154,6 +155,8 @@
 <script type="text/javascript">
     const inputNilai = () => {
         let studentId = $(`.student-id`).map(function() { return $(this).val() }).get()
+        let periodId = $(`#selected-semester`).val()
+        let subjectId = $(`#subject-id`).val()
         let nts = $(`.nts`).map(function() { return $(this).val() }).get()
         let nas = $(`.nas`).map(function() { return $(this).val() }).get()
         $.ajax({
@@ -162,12 +165,21 @@
             data: {
                 '_token': '<?php echo csrf_token(); ?>',
                 'studentId': studentId,
+                'periodId': periodId,
+                'subjectId': subjectId,
                 'nts': nts,
                 'nas': nas,
             },
             success: function(data) {
+                alert(data.message)
+                $('#listmurid').modal('hide')
             }
         })
     }
+
+    const hiddenSubject = (subjectId) => {
+        $(`#subject-id`).val(subjectId)
+}
 </script>
 @endsection
+
