@@ -26,7 +26,7 @@ class TeacherController extends Controller
         $subject = Subject::all();
 
         $teacherClass = $user->teacher->class;
-        $students = Student::where('class', $teacherClass)->get();
+        $students = Student::where('class', $teacherClass)->get('id');
 
         $period_id = $students[0]->grade()->get('period_id');
         $periods = Period::find($period_id);
@@ -60,6 +60,24 @@ class TeacherController extends Controller
 
         return response()->json(array(
             'message' => "success",
+        ), 200);
+    }
+
+    public function detailNilai(Request $request)
+    {
+        $periodId = $request->get('periodId');
+        $subjectId = $request->get('subjectId');
+
+        $user = auth()->user();
+        $teacherClass = $user->teacher->class;
+        $studentId = Student::where('class', $teacherClass)->get('id');
+        $grades = Grade::whereIn('student_id', $studentId)->
+                            where('subject_id', $subjectId)->
+                            where('period_id', $periodId)->get();
+        $students = Student::where('class', $teacherClass)->get();
+        return response()->json(array(
+            'grades' => $grades,
+            'students' => $students,
         ), 200);
     }
 }

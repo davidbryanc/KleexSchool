@@ -109,14 +109,13 @@
                                     <th rowspan="2">No.</th>
                                     <th rowspan="2">Nama Murid</th>
                                     <th colspan="2" >Nilai</th>
-                                    {{-- <th rowspan="2">Pengaturan</th> --}}
                                 </tr>
                                 <tr>
                                     <th width="10%">NTS</th>
                                     <th width="10%">NAS</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="detail">
                                 @foreach ($students as $key=>$value)
                                     <tr style="text-align: center">
                                         <td>{{$key+1}}.</td>
@@ -124,17 +123,7 @@
                                         <input type="hidden" class = "student-id" value = "{{ $value->id }}">
                                         <input type="hidden" id = "subject-id" value = "">
                                         <td><input type="number" inputmode="numeric" class="form-class nts" id="nts_" max="100" min="0"></td>
-                                        <td><input type="number" inputmode="numeric" class="form-class nas" id="nas_" max="100" min="0"></td>
-                                        {{-- <td>
-                                            <button type="button" class="btn btn-warning">
-                                                <i class="fa-solid fa-pencil edit-icon"></i>
-                                                <span class="edit-btn">Edit</span>
-                                            </button>
-                                            <button type="button" class="btn btn-success">
-                                                <i class="fa-solid fa-check edit-icon" style=""></i>
-                                                <span class="edit-btn">Save</span>
-                                            </button>
-                                        </td> --}}                                    
+                                        <td><input type="number" inputmode="numeric" class="form-class nas" id="nas_" max="100" min="0"></td>                                   
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -159,6 +148,12 @@
         let subjectId = $(`#subject-id`).val()
         let nts = $(`.nts`).map(function() { return $(this).val() }).get()
         let nas = $(`.nas`).map(function() { return $(this).val() }).get()
+
+        if(Math.max.apply(Math, nas) > 100 || Math.max.apply(Math, nts) > 100){
+            alert("The score must not greater than 100")
+            return
+        }
+
         $.ajax({
             type: 'POST',
             url: '{{ route("input.nilai") }}',
@@ -178,8 +173,35 @@
     }
 
     const hiddenSubject = (subjectId) => {
-        $(`#subject-id`).val(subjectId)
-}
+        // $(`#subject-id`).val(subjectId)
+        let periodId = $(`#selected-semester`).val()
+        const detail = document.getElementById('detail')
+        detail.innerHTML = ''
+
+        $.ajax({
+            type: 'POST',
+            url: '{{ route("detail.nilai") }}',
+            data: {
+                '_token': '<?php echo csrf_token(); ?>',
+                'periodId': periodId,
+                'subjectId': subjectId,
+            },
+            success: function(data) {
+                data.grades.forEach((grade,index) => {
+                    detail.innerHTML += `
+                        <tr style="text-align: center">
+                            <td>${index+1}.</td>
+                            <td>${ data.students[index].name }</td>
+                            <input type="hidden" class = "student-id" value = "${ data.students[index].id }">
+                            <input type="hidden" id = "subject-id" value = "${subjectId}">
+                            <td><input type="number" inputmode="numeric" class="form-class nts" id="nts_" max="100" min="0" value="${ grade.mid_score }"></td>
+                            <td><input type="number" inputmode="numeric" class="form-class nas" id="nas_" max="100" min="0" value="${ grade.end_score }"></td>                                   
+                        </tr>
+                    `
+                })
+            }
+        })
+    } 
 </script>
 @endsection
 

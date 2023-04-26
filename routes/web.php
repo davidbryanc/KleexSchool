@@ -41,6 +41,7 @@ Route::post('/acc-librarian', [LibrarianController::class, 'accLibrarian'])->nam
 
 Route::get('/inputnilai', [TeacherController::class, 'index'])->name('inputnilai');
 Route::post('/input-nilai', [TeacherController::class, 'inputNilai'])->name('input.nilai');
+Route::post('/detail-nilai', [TeacherController::class, 'detailNilai'])->name('detail.nilai');
 
 Route::view('/dashboard', 'dashboard');
 // Route::view('/librarian', 'librarian');
