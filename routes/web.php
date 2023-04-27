@@ -45,3 +45,4 @@ Route::post('/detail-nilai', [TeacherController::class, 'detailNilai'])->name('d
 
 Route::view('/dashboard', 'dashboard');
 // Route::view('/librarian', 'librarian');
+Route::view('/principal', 'principal');
