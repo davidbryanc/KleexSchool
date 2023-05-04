@@ -69,6 +69,10 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ url('/librarian') }}">Librarian</a>
                                 </li>
+                            @elseif(Auth::user()->role == "Principal")
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url('/principal') }}">Principal</a>
+                                </li>
                             @endif
                         @endif
                     </ul>

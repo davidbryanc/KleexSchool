@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LibrarianController;
+use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Auth;
@@ -43,6 +44,5 @@ Route::get('/inputnilai', [TeacherController::class, 'index'])->name('inputnilai
 Route::post('/input-nilai', [TeacherController::class, 'inputNilai'])->name('input.nilai');
 Route::post('/detail-nilai', [TeacherController::class, 'detailNilai'])->name('detail.nilai');
 
-Route::view('/dashboard', 'dashboard');
-// Route::view('/librarian', 'librarian');
-Route::view('/principal', 'principal');
+Route::get('/principal', [PrincipalController::class, 'index'])->name('principal');
+Route::post('/tambah-data', [PrincipalController::class, 'tambahData'])->name('tambah.data');

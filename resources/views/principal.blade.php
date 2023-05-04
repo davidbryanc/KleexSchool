@@ -106,13 +106,15 @@
                                 <select name="select-kelas" id="kelasSelect" style="width: 19%;">
                                     <option value="" selected hidden>-- Pilih Kelas --</option>
                                     <option value="7">7</option>
-                                    <option value="7">8</option>
-                                    <option value="7">9</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
                                 </select>
                             </div>
                         </div>
-                    </form>
-                    
+                        <div class="row" >
+                            <button type="button" class="btn btn-primary" id="tambahData" onclick="tambahDataSekolah()">Tambah</button>
+                        </div>
+                    </form>                    
                 </div>
             </div>
         </div>
@@ -125,5 +127,33 @@
     $(document).ready(function () {
         $('.datepicker').datepicker();
     });
+
+    const tambahDataSekolah = () => {
+        let jenis = $('input[name=type-radio]:checked').val()     
+        let nama = $(`#namaText`).val()
+        let kota = $(`#kotaText`).val()
+        // let tglLahir = $(`#tglLahir`).val()
+        let sex = $('input[name=gender-radio]:checked').val()
+        let noTelp = $(`#telpText`).val()
+        let kelas = $(`#kelasSelect`).val()
+
+        $.ajax({
+            type: 'POST',
+            url: '{{ route("tambah.data") }}',
+            data: {
+                '_token': '<?php echo csrf_token(); ?>',
+                'jenis': jenis,
+                'nama': nama,
+                'kota': kota,
+                // 'tglLahir': tglLahir,
+                'sex': sex,
+                'noTelp': noTelp,
+                'kelas': kelas,
+            },
+            success: function(data) {
+                alert(data.message)
+            }
+        })
+    }
 </script>
 @endsection
