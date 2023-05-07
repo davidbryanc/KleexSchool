@@ -46,3 +46,5 @@ Route::post('/detail-nilai', [TeacherController::class, 'detailNilai'])->name('d
 
 Route::get('/principal', [PrincipalController::class, 'index'])->name('principal');
 Route::post('/tambah-data', [PrincipalController::class, 'tambahData'])->name('tambah.data');
+
+Route::view('/profile', 'profile');
