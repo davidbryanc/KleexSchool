@@ -7,6 +7,7 @@ use App\Models\BookRent;
 use App\Models\Grade;
 use App\Models\Period;
 use App\Models\Subject;
+use PDF;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -39,9 +40,12 @@ class StudentController extends Controller
         $grades = $user->student->grade()->where('period_id', $period_id)->get();
 
         $subjects = Subject::all();
+        
+        $semester = Period::where('id', $period_id)->first()->name;
         return response()->json(array(
             'grades' => $grades,
             'subjects' => $subjects,
+            'semester' => $semester,
         ), 200);
     }
 
@@ -110,5 +114,14 @@ class StudentController extends Controller
         return response()->json(array(
             'books' => $books,
         ), 200);
+    }
+
+    public function exportPdf(){
+        $subjects = Subject::all();
+
+        view()->share('subjects',$subjects);
+        $pdf = PDF::loadview('liatnilai-pdf');
+
+        return $pdf -> download('nilai.pdf');
     }
 }

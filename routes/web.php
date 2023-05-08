@@ -53,3 +53,5 @@ Route::post('/tambah-data', [PrincipalController::class, 'tambahData'])->name('t
 
 Route::get('/profile', [GeneralController::class, 'index'])->name('profile');
 Route::view('/dashboard', 'dashboard');
+
+Route::get('/exportpdf', [StudentController::class, 'exportPdf'])->name('exportpdf');
