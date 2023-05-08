@@ -8,7 +8,7 @@
 @section('content')
 <main class="content">
     <div class="row w-100 m-0">
-        <div class="col-2">
+        {{-- <div class="col-2">
             <div class="card">
                 <div class="card-header">
                     Tambah Tahun Ajaran
@@ -16,8 +16,8 @@
                 <div class="card-body d-flex justify-content-center">
                     <button type="button" class="btn btn-primary">Tambah</button>
                 </div>
-            </div>
-        </div>
+            </div> --}}
+        {{-- </div> --}}
         <div class="col">
             <div class="card">
                 <div class="card-header">
@@ -27,18 +27,18 @@
                     <form action="">
                         <div class="row">
                             <div class="col-2">
-                                <span>Jenis</span>
+                                <span>Role</span>
                             </div>
                             <div class="col">
                                 <div class="radio-container">
                                     <span>:</span>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" value="Guru" id="guruRadio" name="type-radio">
-                                        <label for="guruRadio">Guru</label>
+                                        <input class="form-check-input" type="radio" value="Teacher" id="guruRadio" name="type-radio">
+                                        <label for="guruRadio">Teacher</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" value="Murid" id="muridRadio" name="type-radio">
-                                        <label for="muridRadio">Murid</label>
+                                        <input class="form-check-input" type="radio" value="Student" id="muridRadio" name="type-radio">
+                                        <label for="muridRadio">Student</label>
                                     </div>
                                 </div>
                             </div>
@@ -54,7 +54,7 @@
                         </div>
                         <div class="row my-1">
                             <div class="col-2 d-flex align-items-center">
-                                <label for="namaText">Kota</label>
+                                <label for="namaText">Alamat</label>
                             </div>
                             <div class="col" style="display: flex; flex-direction:row;gap:20px;align-items:center">
                                 <span>:</span>
@@ -78,12 +78,12 @@
                                 <div class="radio-container">
                                     <span>:</span>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" value="Laki-laki" id="lakiRadio" name="gender-radio">
-                                        <label for="lakiRadio">Laki-laki</label>
+                                        <input class="form-check-input" type="radio" value="Male" id="lakiRadio" name="gender-radio">
+                                        <label for="lakiRadio">Male</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" value="Perempuan" id="perempuanRadio" name="gender-radio">
-                                        <label for="perempuanRadio">Perempuan</label>
+                                        <input class="form-check-input" type="radio" value="Female" id="perempuanRadio" name="gender-radio">
+                                        <label for="perempuanRadio">Female</label>
                                     </div>
                                 </div>
                             </div>
@@ -111,6 +111,24 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-2 d-flex align-items-center">
+                                <label for="usernameText">Username</label>
+                            </div>
+                            <div class="col" style="display: flex; flex-direction:row;gap:20px;align-items:center">
+                                <span>:</span>
+                                <input class="form-control" type="text" placeholder="" aria-label="" id="usernameText">
+                            </div>
+                        </div>
+                        <div class="row my-1">
+                            <div class="col-2 d-flex align-items-center">
+                                <label for="namaText">Password</label>
+                            </div>
+                            <div class="col" style="display: flex; flex-direction:row;gap:20px;align-items:center">
+                                <span>:</span>
+                                <input class="form-control" type="text" placeholder="" aria-label="" id="passwordText">
+                            </div>
+                        </div>
                         <div class="row" >
                             <button type="button" class="btn btn-primary" id="tambahData" onclick="tambahDataSekolah()">Tambah</button>
                         </div>
@@ -131,11 +149,13 @@
     const tambahDataSekolah = () => {
         let jenis = $('input[name=type-radio]:checked').val()     
         let nama = $(`#namaText`).val()
-        let kota = $(`#kotaText`).val()
-        // let tglLahir = $(`#tglLahir`).val()
+        let alamat = $(`#kotaText`).val()
+        let tglLahir = $(`#dateInput`).val()
         let sex = $('input[name=gender-radio]:checked').val()
         let noTelp = $(`#telpText`).val()
         let kelas = $(`#kelasSelect`).val()
+        let username = $(`#usernameText`).val()
+        let password = $(`#passwordText`).val()
 
         $.ajax({
             type: 'POST',
@@ -144,11 +164,13 @@
                 '_token': '<?php echo csrf_token(); ?>',
                 'jenis': jenis,
                 'nama': nama,
-                'kota': kota,
-                // 'tglLahir': tglLahir,
+                'alamat': alamat,
+                'tglLahir': tglLahir,
                 'sex': sex,
                 'noTelp': noTelp,
                 'kelas': kelas,
+                'username': username,
+                'password': password,
             },
             success: function(data) {
                 alert(data.message)

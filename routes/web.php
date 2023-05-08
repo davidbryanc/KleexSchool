@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LibrarianController;
 use App\Http\Controllers\PrincipalController;
@@ -47,4 +48,5 @@ Route::post('/detail-nilai', [TeacherController::class, 'detailNilai'])->name('d
 Route::get('/principal', [PrincipalController::class, 'index'])->name('principal');
 Route::post('/tambah-data', [PrincipalController::class, 'tambahData'])->name('tambah.data');
 
-Route::view('/profile', 'profile');
+Route::get('/profile', [GeneralController::class, 'index'])->name('profile');
+Route::view('/dashboard', 'dashboard');

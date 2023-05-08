@@ -16,18 +16,15 @@ class PrincipalController extends Controller
     {
         $jenis = $request->get('jenis');
         $nama = $request->get('nama');
-        $kota = $request->get('kota');
-        // $tglLahir = $request->get('tglLahir');
+        $alamat = $request->get('alamat');
+        $tglLahir = $request->get('tglLahir');
         $sex = $request->get('sex');
         $noTelp = $request->get('noTelp');
         $kelas = $request->get('kelas');
+        $username = $request->get('username');
+        $password = $request->get('password');
 
-        dd($jenis);
-        dd($nama);
-        dd($kota);
-        dd($sex);
-        dd($noTelp);
-        dd($kelas);
+                
 
         return response()->json(array(
             'message' => "success",        
