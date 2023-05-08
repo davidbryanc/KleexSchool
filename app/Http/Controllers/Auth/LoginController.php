@@ -74,4 +74,14 @@ class LoginController extends Controller
         Auth::logoutOtherDevices($request['password']);
     }
 
+    public function loginCheck(Request $request)
+    {
+        $username=$request->username;
+        $password=$request->password;
+
+        if(Auth::attempt(['username'=>$username,'password'=>$password]))
+        {
+            return redirect()->intended('dashboard');
+        }
+    }
 }

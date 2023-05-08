@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LibrarianController;
@@ -26,6 +27,8 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::post('/login', [LoginController::class, 'loginCheck'])->name('logincheck');
+
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 

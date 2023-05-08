@@ -174,6 +174,7 @@
             },
             success: function(data) {
                 alert(data.message)
+                window.location.reload();
             }
         })
     }
