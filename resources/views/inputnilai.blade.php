@@ -108,7 +108,7 @@
                                 <tr>
                                     <th rowspan="2">No.</th>
                                     <th rowspan="2">Nama Murid</th>
-                                    <th colspan="2" >Nilai</th>
+                                    <th colspan="2">Nilai</th>
                                 </tr>
                                 <tr>
                                     <th width="10%">NTS</th>
@@ -204,4 +204,3 @@
     } 
 </script>
 @endsection
-
