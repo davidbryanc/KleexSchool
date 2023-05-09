@@ -23,7 +23,7 @@
 }
 
 input[type=text], input[type=date]{
-    max-width: 50%;
+    max-width: 100%;
     padding: 0 !important;
 }
 

@@ -7,7 +7,7 @@
 
 @section('content')
 <main class="content">
-    <div class="row w-100 m-0">
+    <div class="row m-0 d-flex justify-content-center mt-4">
         {{-- <div class="col-2">
             <div class="card">
                 <div class="card-header">
@@ -18,7 +18,7 @@
                 </div>
             </div> --}}
         {{-- </div> --}}
-        <div class="col">
+        <div class="col-6">
             <div class="card">
                 <div class="card-header">
                     Teacher / Student Data Input
@@ -43,7 +43,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row mt-2">
                             <div class="col-2 d-flex align-items-center">
                                 <label for="namaText">Name</label>
                             </div>
@@ -52,7 +52,7 @@
                                 <input class="form-control" type="text" placeholder="" aria-label="" id="namaText">
                             </div>
                         </div>
-                        <div class="row my-1">
+                        <div class="row mt-2">
                             <div class="col-2 d-flex align-items-center">
                                 <label for="namaText">Address</label>
                             </div>
@@ -61,7 +61,7 @@
                                 <input class="form-control" type="text" placeholder="" aria-label="" id="kotaText">
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row mt-2">
                             <div class="col-2 d-flex align-items-center">
                                 <label for="dateInput">Birth Date</label>
                             </div>
@@ -70,7 +70,7 @@
                                 <input type="date" class="form-control" id="dateInput">
                             </div>
                         </div>
-                        <div class="row my-1">
+                        <div class="row mt-2">
                             <div class="col-2 d-flex align-items-center">
                                 <label for="genderInput">Gender</label>
                             </div>
@@ -88,7 +88,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row mt-2">
                             <div class="col-2 d-flex align-items-center">
                                 <label for="dateInput">Phone Number</label>
                             </div>
@@ -97,13 +97,13 @@
                                 <input type="text" class="form-control" id="telpText">
                             </div>
                         </div>
-                        <div class="row my-1">
+                        <div class="row mt-2">
                             <div class="col-2 d-flex align-items-center">
                                 <label for="dateInput">Class</label>
                             </div>
                             <div class="col" style="display: flex; flex-direction:row;gap:20px;align-items:center">
                                 <span>:</span>
-                                <select name="select-kelas" id="kelasSelect" style="width: 19%;">
+                                <select name="select-kelas" id="kelasSelect" style="width: 50%;">
                                     <option value="" selected hidden>-- Select Class --</option>
                                     <option value="7">7</option>
                                     <option value="8">8</option>
@@ -111,7 +111,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row mt-2">
                             <div class="col-2 d-flex align-items-center">
                                 <label for="usernameText">Username</label>
                             </div>
@@ -120,7 +120,7 @@
                                 <input class="form-control" type="text" placeholder="" aria-label="" id="usernameText">
                             </div>
                         </div>
-                        <div class="row my-1">
+                        <div class="row mt-2">
                             <div class="col-2 d-flex align-items-center">
                                 <label for="namaText">Password</label>
                             </div>
@@ -129,7 +129,7 @@
                                 <input class="form-control" type="text" placeholder="" aria-label="" id="passwordText">
                             </div>
                         </div>
-                        <div class="row" >
+                        <div class="row mt-4" >
                             <button type="button" class="btn btn-primary" id="tambahData" onclick="tambahDataSekolah()">Save</button>
                         </div>
                     </form>                    
