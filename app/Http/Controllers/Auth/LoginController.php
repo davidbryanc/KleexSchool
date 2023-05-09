@@ -46,7 +46,7 @@ class LoginController extends Controller
     {
         switch (Auth::user()->role) {
             case 'Student':
-                $this->redirectTo = '/home';
+                $this->redirectTo = '/dashboard';
                 return $this->redirectTo;
                 break;
             default:

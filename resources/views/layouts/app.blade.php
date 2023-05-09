@@ -57,14 +57,14 @@
                         @if(!Auth::guest())
                             @if(Auth::user()->role == "Teacher")
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('/inputnilai') }}">Score Input</a>
+                                    <a class="nav-link" href="{{ url('/score-input') }}">Score Input</a>
                                 </li>
                             @elseif(Auth::user()->role == "Student")
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ url('/score-report') }}">Score Report</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('/bookrent') }}">Borrow a Book</a>
+                                    <a class="nav-link" href="{{ url('/book-rent') }}">Borrow a Book</a>
                                 </li>
                             @elseif(Auth::user()->role == "Librarian")
                                 <li class="nav-item">

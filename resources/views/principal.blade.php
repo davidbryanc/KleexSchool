@@ -159,7 +159,7 @@
 
         $.ajax({
             type: 'POST',
-            url: '{{ route("tambah.data") }}',
+            url: '{{ route("add.data") }}',
             data: {
                 '_token': '<?php echo csrf_token(); ?>',
                 'jenis': jenis,
