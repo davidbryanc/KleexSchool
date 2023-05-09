@@ -30,7 +30,6 @@ Route::post('/login', [LoginController::class, 'loginCheck'])->name('logincheck'
 // Login User
 Route::group(['middleware' => 'auth'],
     function () {
-        Route::get('/home', [HomeController::class, 'index'])->name('home');
         Route::get('/dashboard', [GeneralController::class, 'index'])->name('dashboard');
     }
 );
