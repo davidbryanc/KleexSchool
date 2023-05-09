@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Student;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,11 +13,6 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Show the application dashboard.
      *
@@ -24,12 +21,14 @@ class HomeController extends Controller
 
     public function index()
     {
-        $user = auth()->user();
-        $role = $user->role;
-        return view('home', compact('role'));
-    }
-    public function bisa()
-    {
-        return view('bisa');
+        $user = auth() -> user();
+
+        if($user->role == 'Student'){
+            $profile = Student::where('user_id', $user->id)->first();
+        }else{
+            $profile = Teacher::where('user_id', $user->id)->first();
+        }
+
+        return view('dashboard', compact('user', 'profile'));
     }
 }

@@ -7,12 +7,7 @@ use App\Models\Teacher;
 use Illuminate\Http\Request;
 
 class GeneralController extends Controller
-{
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-    
+{    
     public function index(){
         $user = auth() -> user();
 
