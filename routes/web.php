@@ -35,7 +35,7 @@ Route::group(['middleware' => 'auth'],
 );
 
 // Student
-Route::group(['middleware' => 'student'],
+Route::group(['middleware' => ['auth', 'student']],
     function () {
         Route::get('/score-report', [StudentController::class, 'index'])->name('score-report');
         Route::get('/book-rent', [StudentController::class, 'bookRent'])->name('book.rent');
@@ -47,14 +47,14 @@ Route::group(['middleware' => 'student'],
     }
 );
 
-Route::group(['middleware' => 'principal'],
+Route::group(['middleware' => ['auth', 'principal']],
     function () {
         Route::get('/principal', [PrincipalController::class, 'index'])->name('principal');
         Route::post('/add-data', [PrincipalController::class, 'tambahData'])->name('add.data');
     }
 );
 
-Route::group(['middleware' => 'teacher'],
+Route::group(['middleware' => ['auth', 'teacher']],
     function () {
         Route::get('/score-input', [TeacherController::class, 'index'])->name('score.input');
         Route::post('/input-nilai', [TeacherController::class, 'inputNilai'])->name('input.nilai');
@@ -62,7 +62,7 @@ Route::group(['middleware' => 'teacher'],
     }
 )
 ;
-Route::group(['middleware' => 'librarian'],
+Route::group(['middleware' => ['auth', 'librarian']],
     function () {
         Route::get('/librarian', [LibrarianController::class, 'index'])->name('librarian');
         Route::post('/acc-librarian', [LibrarianController::class, 'accLibrarian'])->name('acc.librarian');

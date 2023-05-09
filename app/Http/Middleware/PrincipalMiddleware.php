@@ -16,7 +16,7 @@ class PrincipalMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->role == "Principal") {
+        if (auth()->user()->role == "Principal" ) {
             return $next($request);
         }else{
             return redirect()->back();
