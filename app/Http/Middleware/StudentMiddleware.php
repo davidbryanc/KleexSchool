@@ -19,8 +19,9 @@ class StudentMiddleware
     {
         if (auth()->user()->role == "Student") {
             return $next($request);
+        }else{
+            return redirect()->back();
         }
 
-        return redirect()->back();
     }
 }

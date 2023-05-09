@@ -57,22 +57,22 @@
                         @if(!Auth::guest())
                             @if(Auth::user()->role == "Teacher")
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('/inputnilai') }}">Input Nilai</a>
+                                    <a class="nav-link" href="{{ url('/inputnilai') }}">Score Input</a>
                                 </li>
                             @elseif(Auth::user()->role == "Student")
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('/liatnilai') }}">Liat Nilai</a>
+                                    <a class="nav-link" href="{{ url('/score-report') }}">Score Report</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('/bookrent') }}">Pinjam Buku</a>
+                                    <a class="nav-link" href="{{ url('/bookrent') }}">Borrow a Book</a>
                                 </li>
                             @elseif(Auth::user()->role == "Librarian")
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('/librarian') }}">Librarian</a>
+                                    <a class="nav-link" href="{{ url('/librarian') }}">Book Return Confirmation</a>
                                 </li>
                             @elseif(Auth::user()->role == "Principal")
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('/principal') }}">Principal</a>
+                                    <a class="nav-link" href="{{ url('/principal') }}">Add Data</a>
                                 </li>
                             @endif
                         @endif
@@ -98,13 +98,8 @@
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->username }}
                                 </a>
-                                
-                                
+                                    
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('profile') }}">
-                                        {{ __('Profile') }}
-                                    </a>
-
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -124,7 +119,7 @@
             </div>
         </nav>
 
-        <main class="py-4" style="width:100%;height:100%;display: flex; justify-content: center;">
+        <main class="py-2" style="width:100%;height:100%;display: flex; justify-content: center;">
             @yield('content')
         </main>
     </div>

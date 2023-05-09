@@ -116,12 +116,12 @@ class StudentController extends Controller
         ), 200);
     }
 
-    public function exportPdf(){
-        $subjects = Subject::all();
+    // public function exportPdf(){
+    //     $subjects = Subject::all();
 
-        view()->share('subjects',$subjects);
-        $pdf = PDF::loadview('liatnilai-pdf');
+    //     view()->share('subjects',$subjects);
+    //     $pdf = PDF::loadview('liatnilai-pdf');
 
-        return $pdf -> download('nilai.pdf');
-    }
+    //     return $pdf -> download('nilai.pdf');
+    // }
 }

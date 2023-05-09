@@ -44,10 +44,21 @@ class TeacherController extends Controller
         $nas = $request->get('nas');
 
         foreach($studentId as $key=>$value){
+            $na = $nts[$key]*0.4 + $nas[$key]*0.6;
+            
+            if($na >= 81) $nisbi = 'A';
+            else if($na >= 73 ) $nisbi = 'AB';
+            else if($na >= 66 ) $nisbi = 'B';
+            else if($na >= 60 ) $nisbi = 'BC';
+            else if($na >= 55 ) $nisbi = 'C';
+            else if($na >= 40 ) $nisbi = 'D';
+            else $nisbi = 'E';
+
             DB::table('grades')->where(['student_id' => $value, 'subject_id' => $subjectId, 'period_id' => $periodId])->update([
                 'mid_score' => $nts[$key],
                 'end_score' => $nas[$key],
-                'final_score' => $nts[$key]*0.4 + $nas[$key]*0.6,
+                'final_score' => $na,
+                'nisbi' => $nisbi,
             ]);
 
             //failed hehe :D kalo ada id sebagai key, baru bisa pake ini

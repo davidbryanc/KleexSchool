@@ -20,7 +20,7 @@ class CreateTeachersTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
 
             $table->string('name');
-            $table->string('address');
+            $table->string('address', 500);
             $table->date('birth_date');
             $table->string('phone_number');
             $table->string('gender');

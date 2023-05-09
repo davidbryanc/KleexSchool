@@ -11,20 +11,20 @@
             {{-- Card Identitas --}}
             <div class="card">
                 <div class="card-header ">
-                    Data Siswa
+                    Student Data 
                 </div>
                 <div class="card-body">
                     <div id="identity">
                         <div class="row">
-                            <div class="col-4 col-sm-4 col-md-3">Nama</div>
+                            <div class="col-4 col-sm-4 col-md-3">Name</div>
                             <div class="col-8 col-sm-8 col-md-9">: {{ $user->student->name }}</div>
                         </div>
                         <div class="row">
-                            <div class="col-4 col-sm-4 col-md-3">Kelas</div>
+                            <div class="col-4 col-sm-4 col-md-3">Class</div>
                             <div class="col-8 col-sm-8 col-md-9">: {{ $user->student->class }}</div>
                         </div>
                         <div class="row">
-                            <div class="col-4 col-sm-4 col-md-3">No. Induk</div>
+                            <div class="col-4 col-sm-4 col-md-3">NISN</div>
                             <div class="col-8 col-sm-8 col-md-9">: {{ $user->username }}</div>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
         <div class="col-4">
             <div class="card">
                 <div class="card-header">
-                    Buku yang Sedang Dipinjam
+                    Borrowed Books
                 </div>
                 <div class="card-body">
                     <div class="table-responsive my-3">
@@ -48,8 +48,8 @@
                             <thead class="table-dark thead-sticky" style="text-align: center">
                                 <tr>
                                     <th width="5%">No.</th>
-                                    <th width="">Judul Buku</th>
-                                    <th>Aksi</th>
+                                    <th width="">Book Title</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody style="text-align: center" id="list-pinjam">
@@ -77,18 +77,18 @@
         <div class="col-8">
             <div class="card">
                 <div class="card-header">
-                    Daftar Buku yang Tersedia
+                    List of Available Books
                 </div>
                 <div class="card-body">
-                    <label for="filter-username">Pencarian Judul Buku :</label>
+                    <label for="filter-username">Book Title Search :</label>
                     <input type="search" id="search" placeholder="Search" onkeyup="search()">
                     <div class="table-responsive my-3">
                         <table class="table" >
                             <thead class="table-dark thead-sticky" style="text-align: center">
                                 <tr>
                                     <th width="5%">No.</th>
-                                    <th width="">Judul Buku</th>
-                                    <th>Aksi</th>
+                                    <th width="">Book Title</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody style="text-align: center" id="list-buku">
@@ -96,7 +96,7 @@
                                 <tr>
                                     <td >{{$index + 1}}.</td>
                                     <td style="text-align: left" id="book_{{ $book->id }}" >{{ $book->name }}</td>
-                                    <td><button type="button" class="btn btn-primary" onclick="rentBook({{ $book->id }})">Rent</button></td>
+                                    <td><button type="button" class="btn btn-primary" onclick="rentBook({{ $book->id }})">Borrow</button></td>
                                 </tr>  
                                 @endforeach  
                             </tbody>
@@ -246,7 +246,7 @@
                         <tr>
                             <td >${index + 1}.</td>
                             <td style="text-align: left" id="book_${ book.id }" >${ book.name }</td>
-                            <td><button type="button" class="btn btn-primary" onclick="rentBook(${ book.id })">Rent</button></td>
+                            <td><button type="button" class="btn btn-primary" onclick="rentBook(${ book.id })">Borrow</button></td>
                         </tr>  
                     `
                 })

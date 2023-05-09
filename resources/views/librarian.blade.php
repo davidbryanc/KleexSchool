@@ -11,17 +11,17 @@
             {{-- Card Identitas --}}
             <div class="card">
                 <div class="card-header ">
-                    Data Petugas Perpustakaan
+                    Librarian Data
                 </div>
                 <div class="card-body">
                     <div id="identity">
                         <div class="row">
-                            <div class="col-4 col-sm-4 col-md-3">Nama</div>
+                            <div class="col-4 col-sm-4 col-md-3">Name</div>
                             <div class="col-8 col-sm-8 col-md-9">: {{ $user->teacher->name }}</div>
                         </div>
                         <div class="row">
                             <div class="col-4 col-sm-4 col-md-3">NIPN</div>
-                            <div class="col-8 col-sm-8 col-md-9">: 28634591</div>
+                            <div class="col-8 col-sm-8 col-md-9">:  {{ $user->username }}</div>
                         </div>
                     </div>
                 </div>
@@ -36,21 +36,21 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    Daftar Peminjam
+                    List of Book Borrowers
                 </div>
                 <div class="card-body">
                     {{-- <button type="button" class="btn btn-primary"><i class="fa-solid fa-user-plus" style="margin-right: 4px"></i>Tambah</button> --}}
-                    <label for="filter-username">Pencarian Nama Peminjam :</label>
-                    <input type="search" placeholder="Search" onkeyup="search()" id="filter-username">
+                    {{-- <label for="filter-username">Pencarian Nama Peminjam :</label>
+                    <input type="search" placeholder="Search" onkeyup="search()" id="filter-username"> --}}
                     <div class="table-responsive my-3">
                         <table class="table" >
                             <thead class="table-dark" style="text-align: center">
                                 <tr>
                                     <th width="5%">No.</th>
-                                    <th width="25%">Judul Buku</th>
-                                    <th width="25%">Nama Peminjam</th>
-                                    <th width="">Tgl. Pinjam</th>
-                                    <th>Aksi</th>
+                                    <th width="25%">Book Title</th>
+                                    <th width="25%">Name</th>
+                                    <th width="">Borrow Date</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody style="text-align: center" id="list-peminjam">
@@ -60,7 +60,7 @@
                                     <td style="text-align: left" style="max-width: 400px;">{{$r->book->name}}</td>
                                     <td >{{$r->student->name}}</td>
                                     <td>{{$r->rent_date}}</td> {{--Format e bebas--}}
-                                    <td><button type="button" class="btn btn-success" onclick="accBook({{ $r->id }})" >Terima</button></td>
+                                    <td><button type="button" class="btn btn-success" onclick="accBook({{ $r->id }})" >Accept</button></td>
                                 </tr>  
                                 @endforeach
                             </tbody>
@@ -93,42 +93,12 @@
 
                 data.rented_update.forEach((rented,index) => {
                     list1.innerHTML += `
-                                <tr>
-                                    <td>${index+1}.</td>
-                                    <td style="text-align: left" style="max-width: 400px;">${rented.book.name}</td>
-                                    <td>${rented.student.name}</td>
-                                    <td>${rented.rent_date}}</td>
-                                    <td><button type="button" class="btn btn-success" onclick="accBook(${ $rented.id })" >Terima</button></td>
-                                </tr>  
-                    `
-                })
-            }
-        })
-    }
-    
-    const search = () =>{
-        let value = $('#filter-username').val()
-
-        const list1 = document.getElementById('list-peminjam')
-        list1.innerHTML = ''
-
-        $.ajax({
-            type: 'POST',
-            url: '{{ route("search.librarian") }}',
-            data: {
-                '_token': '<?php echo csrf_token(); ?>',
-                'value': value,
-            },
-            success: function(data) {
-
-                data.name_searched.forEach((search,index) => {
-                    list1.innerHTML += `
                         <tr>
                             <td>${index+1}.</td>
-                            <td style="text-align: left" style="max-width: 400px;">${search.bookRent.book.name}</td>
-                            <td>${search.name}</td>
-                            <td>${search.bookRent.rent_date}</td> {{--Format e bebas--}}
-                            <td><button type="button" class="btn btn-success" id="${search.bookRent.id}">Terima</button></td>
+                            <td style="text-align: left" style="max-width: 400px;">${rented.book.name}</td>
+                            <td>${rented.student.name}</td>
+                            <td>${rented.rent_date}}</td>
+                            <td><button type="button" class="btn btn-success" onclick="accBook(${ $rented.id })" >Accept</button></td>
                         </tr>  
                     `
                 })

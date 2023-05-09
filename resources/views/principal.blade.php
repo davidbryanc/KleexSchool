@@ -21,7 +21,7 @@
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    Input Data Guru / Murid
+                    Teacher / Student Data Input
                 </div>
                 <div class="card-body">
                     <form action="">
@@ -45,7 +45,7 @@
                         </div>
                         <div class="row">
                             <div class="col-2 d-flex align-items-center">
-                                <label for="namaText">Nama</label>
+                                <label for="namaText">Name</label>
                             </div>
                             <div class="col" style="display: flex; flex-direction:row;gap:20px;align-items:center">
                                 <span>:</span>
@@ -54,7 +54,7 @@
                         </div>
                         <div class="row my-1">
                             <div class="col-2 d-flex align-items-center">
-                                <label for="namaText">Alamat</label>
+                                <label for="namaText">Address</label>
                             </div>
                             <div class="col" style="display: flex; flex-direction:row;gap:20px;align-items:center">
                                 <span>:</span>
@@ -63,7 +63,7 @@
                         </div>
                         <div class="row">
                             <div class="col-2 d-flex align-items-center">
-                                <label for="dateInput">Tgl. Lahir</label>
+                                <label for="dateInput">Birth Date</label>
                             </div>
                             <div class="col" style="display: flex; flex-direction:row;gap:20px;align-items:center">
                                 <span>:</span>
@@ -72,7 +72,7 @@
                         </div>
                         <div class="row my-1">
                             <div class="col-2 d-flex align-items-center">
-                                <label for="genderInput">Jenis Kelamin</label>
+                                <label for="genderInput">Gender</label>
                             </div>
                             <div class="col" style="display: flex; flex-direction:row;gap:20px;align-items:center">
                                 <div class="radio-container">
@@ -90,7 +90,7 @@
                         </div>
                         <div class="row">
                             <div class="col-2 d-flex align-items-center">
-                                <label for="dateInput">No. Telp</label>
+                                <label for="dateInput">Phone Number</label>
                             </div>
                             <div class="col" style="display: flex; flex-direction:row;gap:20px;align-items:center">
                                 <span>:</span>
@@ -99,12 +99,12 @@
                         </div>
                         <div class="row my-1">
                             <div class="col-2 d-flex align-items-center">
-                                <label for="dateInput">Kelas</label>
+                                <label for="dateInput">Class</label>
                             </div>
                             <div class="col" style="display: flex; flex-direction:row;gap:20px;align-items:center">
                                 <span>:</span>
                                 <select name="select-kelas" id="kelasSelect" style="width: 19%;">
-                                    <option value="" selected hidden>-- Pilih Kelas --</option>
+                                    <option value="" selected hidden>-- Select Class --</option>
                                     <option value="7">7</option>
                                     <option value="8">8</option>
                                     <option value="9">9</option>
@@ -130,7 +130,7 @@
                             </div>
                         </div>
                         <div class="row" >
-                            <button type="button" class="btn btn-primary" id="tambahData" onclick="tambahDataSekolah()">Tambah</button>
+                            <button type="button" class="btn btn-primary" id="tambahData" onclick="tambahDataSekolah()">Save</button>
                         </div>
                     </form>                    
                 </div>

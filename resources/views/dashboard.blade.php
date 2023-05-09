@@ -17,39 +17,43 @@
             <section id="profile-section">
                 <div class="row mt-3">
                     <div class="col d-flex justify-content-center">
-                        <img src="{{ asset('assets/profiles/dummy.png') }}" alt="">
+                        <img src="{{ asset('images/p'.$user->username.'.png') }}" alt="">
                     </div>
                     
                 </div>
                 <div class="row">
                     <div class="col py-3">
                         <div class="row">
-                            <div class="col-4 col-sm-4 col-md-4">Nama</div>
-                            <div class="col-8 col-sm-8 col-md">: Alexander Kenrick Duanto</div>
+                            <div class="col-4 col-sm-4 col-md-4">Name</div>
+                            <div class="col-8 col-sm-8 col-md">: {{ $profile->name }}</div>
                         </div>
                         <div class="row mt-1">
-                            <div class="col-4 col-sm-4 col-md-4">NIPN</div>
-                            <div class="col-8 col-sm-8 col-md">: 28634591</div>
+                            <div class="col-4 col-sm-4 col-md-4">NIPN/NISN</div>
+                            <div class="col-8 col-sm-8 col-md">: {{ $user->username }}</div>
                         </div>
                         <div class="row mt-1">
-                            <div class="col-4 col-sm-4 col-md-4">Kelas</div>
-                            <div class="col-8 col-sm-8 col-md">: 7</div>
+                            <div class="col-4 col-sm-4 col-md-4">Status</div>
+                            <div class="col-8 col-sm-8 col-md">: {{ $user->role }}</div>
                         </div>
                         <div class="row mt-1">
-                            <div class="col-4 col-sm-4 col-md-4">Jenis Kelamin</div>
-                            <div class="col-8 col-sm-8 col-md">: Pria</div>
+                            <div class="col-4 col-sm-4 col-md-4">Class</div>
+                            <div class="col-8 col-sm-8 col-md">: {{ $profile->class }}</div>
                         </div>
                         <div class="row mt-1">
-                            <div class="col-4 col-sm-4 col-md-4">Alamat</div>
-                            <div class="col-8 col-sm-8 col-md">: Surabaya</div>
+                            <div class="col-4 col-sm-4 col-md-4">Gender</div>
+                            <div class="col-8 col-sm-8 col-md">: {{ $profile->gender }}</div>
                         </div>
                         <div class="row mt-1">
-                            <div class="col-4 col-sm-4 col-md-4">Tgl. Lahir</div>
-                            <div class="col-8 col-sm-8 col-md">: 2003-01-17</div>
+                            <div class="col-4 col-sm-4 col-md-4">Address</div>
+                            <div class="col-8 col-sm-8 col-md">: {{ Crypt::decryptString($profile->address) }}</div>
                         </div>
                         <div class="row mt-1">
-                            <div class="col-4 col-sm-4 col-md-4">No. Telp</div>
-                            <div class="col-8 col-sm-8 col-md">: 081234567890</div>
+                            <div class="col-4 col-sm-4 col-md-4">Birth Date</div>
+                            <div class="col-8 col-sm-8 col-md">: {{ $profile->birth_date }}</div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col-4 col-sm-4 col-md-4">Phone Number</div>
+                            <div class="col-8 col-sm-8 col-md">: {{ Crypt::decryptString($profile->phone_number) }}</div>
                         </div>
                     </div>
                     {{-- <div class="col-2">

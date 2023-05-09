@@ -17,18 +17,21 @@ class LibrarianController extends Controller
         return view('librarian', compact('user','rented'));
     }
 
-    public function searchLibrarian(Request $request){
-        $value = $request->value;
-        $user = auth()->user();
+    // public function searchLibrarian(Request $request){
+    //     $value = $request->value;
+    //     $user = auth()->user();
 
-        $rented = BookRent::where('is_returned',1)->get('student_id');
+    //     $rented = BookRent::where('is_returned',1)->get('student_id');
 
-        $search = Student::whereIn('id',$rented)->where('name', 'like', '%'.$value.'%')->get();
+    //     $search = Student::whereIn('id',$rented)->where('name', 'like', '%'.$value.'%')->orderBy('id','ASC')->get('name');
+    //     $search_id = Student::whereIn('id',$rented)->where('name', 'like', '%'.$value.'%')->orderBy('id','ASC')->get('id');
+    //     $rented = BookRent::where('is_returned',1)->whereIn('student_id', $search_id)->get('student_id');
 
-        return response()->json(array(
-            'name_searched' => $search,
-        ), 200);
-    }
+    //     return response()->json(array(
+    //         'name_searched' => $search,
+    //         'rented' => $rented,
+    //     ), 200);
+    // }
 
     public function accLibrarian(Request $request){
         $id = $request->id;

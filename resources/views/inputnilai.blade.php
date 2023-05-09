@@ -12,12 +12,12 @@
             {{-- Card Identitas --}}
             <div class="card">
                 <div class="card-header ">
-                    Data Guru
+                    Teacher Data
                 </div>
                 <div class="card-body">
                     <div id="identity">
                         <div class="row">
-                            <div class="col-4 col-sm-4 col-md-3">Nama</div>
+                            <div class="col-4 col-sm-4 col-md-3">Name</div>
                             <div class="col-8 col-sm-8 col-md-9">: {{ $user->teacher->name }}</div>
                         </div>
                         <div class="row">
@@ -41,11 +41,11 @@
                 </div>
                 <div class="card-body row">
                     <div class="col-4 col-sm-4 col-md-3 d-flex align-items-center">
-                        Pilih Semester
+                        Select Semester
                     </div>
                     <div class="col-8 col-sm-8 col-md-9 d-flex align-items-center">
                         <select class="form-select" aria-label="Semester" id="selected-semester">
-                            <option selected disabled>-- Pilih Semester --</option>
+                            <option selected disabled>-- Select Semester --</option>
                             @foreach ($periods as $p)
                                 <option value="{{ $p->id }}">{{ $p->name }}</option>
                             @endforeach
@@ -62,7 +62,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    Daftar Mata Pelajaran
+                    List of Subjects
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -70,7 +70,7 @@
                             <thead class="table-dark" style="text-align: center">
                                 <tr>
                                     <th width="5%">No.</th>
-                                    <th >Mata Pelajaran</th>
+                                    <th>Subject</th>
                                     <th width="">Edit</th>
                                 </tr>
                             </thead>
@@ -98,7 +98,7 @@
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #4b5fda;color:white;">
-                    <h1 class="modal-title fs-5" id="">Daftar Murid</h1>
+                    <h1 class="modal-title fs-5" id="">Student List</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="color: white"></button>
                 </div>
                 <div class="modal-body">
@@ -107,12 +107,12 @@
                             <thead class="table-dark" style="text-align: center">
                                 <tr>
                                     <th rowspan="2">No.</th>
-                                    <th rowspan="2">Nama Murid</th>
-                                    <th colspan="2">Nilai</th>
+                                    <th rowspan="2">Student Name</th>
+                                    <th colspan="2">Score</th>
                                 </tr>
                                 <tr>
-                                    <th width="10%">NTS</th>
-                                    <th width="10%">NAS</th>
+                                    <th width="10%">Mid Score</th>
+                                    <th width="10%">End Score</th>
                                 </tr>
                             </thead>
                             <tbody id="detail">

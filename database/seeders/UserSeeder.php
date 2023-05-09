@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -17,57 +18,57 @@ class UserSeeder extends Seeder
         $user = [
             [
                 'username' => '000001',
-                'password' => bcrypt('123456'),
+                'password' => Hash::make("dhawiohawodhaoh"),
                 'role' => "Student"
             ],
             [
                 'username' => '000002',
-                'password' => bcrypt('123456'),
+                'password' => Hash::make("dhawiohawodhaoh"),
                 'role' => "Student"
             ],
             [
                 'username' => '000003',
-                'password' => bcrypt('123456'),
+                'password' => Hash::make("dhawiohawodhaoh"),
                 'role' => "Student"
             ],
             [
                 'username' => '000004',
-                'password' => bcrypt('123456'),
+                'password' => Hash::make("dhawiohawodhaoh"),
                 'role' => "Student"
             ],
             [
                 'username' => '000005',
-                'password' => bcrypt('123456'),
+                'password' => Hash::make("dhawiohawodhaoh"),
                 'role' => "Student"
             ],
             [
                 'username' => '000006',
-                'password' => bcrypt('123456'),
+                'password' => Hash::make("dhawiohawodhaoh"),
                 'role' => "Student"
             ],
             [
                 'username' => '100001',
-                'password' => bcrypt('123456'),
+                'password' => Hash::make("dhawiohawodhaoh"),
                 'role' => "Principal"
             ],
             [
                 'username' => '100002',
-                'password' => bcrypt('123456'),
+                'password' => Hash::make("dhawiohawodhaoh"),
                 'role' => "Librarian"
             ],
             [
                 'username' => '100003',
-                'password' => bcrypt('123456'),
+                'password' => Hash::make("dhawiohawodhaoh"),
                 'role' => "Teacher"
             ],
             [
                 'username' => '100004',
-                'password' => bcrypt('123456'),
+                'password' => Hash::make("dhawiohawodhaoh"),
                 'role' => "Teacher"
             ],
             [
                 'username' => '100005',
-                'password' => bcrypt('123456'),
+                'password' => Hash::make("dhawiohawodhaoh"),
                 'role' => "Teacher"
             ],
             
