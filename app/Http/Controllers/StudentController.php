@@ -26,7 +26,7 @@ class StudentController extends Controller
     {
         $user = auth()->user();
         $book_id = $user->student->bookRent()->where('librarian_id', null)->orderBy('book_id')->get('book_id');
-        $rents = BookRent::where('student_id', $user->id)->where('librarian_id', null)->orderBy('book_id')->get();
+        $rents = BookRent::where('student_id', $user->student->id)->where('librarian_id', null)->orderBy('book_id')->get();
         $books = Book::whereNotIn('id', $book_id)->get();
 
         return view('bookrent', compact('user', 'books', 'rents'));
@@ -58,7 +58,7 @@ class StudentController extends Controller
         if($total_book < 3){
 
             $rent = new BookRent;
-            $rent->student_id = $user->id;
+            $rent->student_id = $user->student->id;
             $rent->book_id = $id;
             $rent->save();
 
@@ -69,7 +69,7 @@ class StudentController extends Controller
         }
 
         $book_id = $user->student->bookRent()->where('librarian_id', null)->orderBy('book_id')->get('book_id');
-        $rents = BookRent::where('student_id', $user->id)->where('librarian_id', null)->orderBy('book_id')->get();
+        $rents = BookRent::where('student_id', $user->student->id)->where('librarian_id', null)->orderBy('book_id')->get();
         $books = Book::whereNotIn('id', $book_id)->get();
         $books2 = Book::whereIn('id', $book_id)->get();
 
@@ -92,7 +92,7 @@ class StudentController extends Controller
         $status = "Success";
 
         $book_id = $user->student->bookRent()->where('librarian_id', null)->orderBy('book_id')->get('book_id');
-        $rents = BookRent::where('student_id', $user->id)->where('librarian_id', null)->orderBy('book_id')->get();
+        $rents = BookRent::where('student_id', $user->student->id)->where('librarian_id', null)->orderBy('book_id')->get();
         $books = Book::whereNotIn('id', $book_id)->get();
         $books2 = Book::whereIn('id', $book_id)->get();
 
