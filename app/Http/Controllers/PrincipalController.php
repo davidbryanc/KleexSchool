@@ -9,6 +9,7 @@ use App\Models\Subject;
 use App\Models\Teacher;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 
 class PrincipalController extends Controller
@@ -41,9 +42,9 @@ class PrincipalController extends Controller
             $student = new Student();
             $student->user_id = User::where('username', $username)->first()->id; 
             $student->name = $nama;
-            $student->address = $alamat;
+            $student->address = Crypt::encryptString($alamat);
             $student->birth_date = $tglLahir;
-            $student->phone_number = $noTelp;
+            $student->phone_number = Crypt::encryptString($noTelp);
             $student->gender = $sex;
             $student->class = $kelas;
             $student->save();
@@ -64,14 +65,13 @@ class PrincipalController extends Controller
                     $grade->save();
                 }
             }
-
         }else if($jenis == "Teacher"){
             $teacher = new Teacher();
             $teacher->user_id = User::where('username', $username)->first()->id; 
             $teacher->name = $nama;
-            $teacher->address = $alamat;
+            $teacher->address = Crypt::encryptString($alamat);
             $teacher->birth_date = $tglLahir;
-            $teacher->phone_number = $noTelp;
+            $teacher->phone_number = Crypt::encryptString($noTelp);
             $teacher->gender = $sex;
             $teacher->class = $kelas;
             $teacher->save();

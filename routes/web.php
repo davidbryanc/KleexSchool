@@ -60,8 +60,8 @@ Route::group(['middleware' => ['auth', 'teacher']],
         Route::post('/input-nilai', [TeacherController::class, 'inputNilai'])->name('input.nilai');
         Route::post('/detail-nilai', [TeacherController::class, 'detailNilai'])->name('detail.nilai');
     }
-)
-;
+);
+
 Route::group(['middleware' => ['auth', 'librarian']],
     function () {
         Route::get('/librarian', [LibrarianController::class, 'index'])->name('librarian');
