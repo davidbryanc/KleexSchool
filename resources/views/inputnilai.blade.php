@@ -197,7 +197,7 @@
                             <td><input type="number" inputmode="numeric" class="form-class nts" id="nts_" max="100" min="0" value="${ grade.mid_score }"></td>
                             <td><input type="number" inputmode="numeric" class="form-class nas" id="nas_" max="100" min="0" value="${ grade.end_score }"></td>                                   
                         </tr>
-                `
+                    `
                 })
             }
         })
